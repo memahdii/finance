@@ -1,0 +1,22 @@
+CREATE TABLE "transactions" (
+	'trans_id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+	'user_id' INTEGER NOT NULL,
+	'comp_symbol' TEXT NOT NULL,
+	'comp_name' TEXT NOT NULL,
+	'shares' INTEGER NOT NULL,
+	'price' REAL NOT NULL,
+	'time' DATETIME NOT NULL,
+	'action' TEXT NOT NULL,
+	FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+
+
+CREATE TABLE "portfolio" (
+	'user_id' INTEGER NOT NULL,
+	'comp_symbol' TEXT NOT NULL,
+	'comp_name' TEXT NOT NULL,
+	'shares' INTEGER NOT NULL,
+	'price' REAL NOT NULL,
+	FOREIGN KEY (user_id) REFERENCES users(id)
+);
