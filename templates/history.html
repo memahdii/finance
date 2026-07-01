@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+    <div class="container">
+    <table style="margin: 0 auto;">
+        <thead>
+            <tr>
+                <th style="padding: 20px;">Symbol</th>
+                <th style="padding: 20px;">Shares</th>
+                <th style="padding: 20px;">Price</th>
+                <th style="padding: 20px;">Transacted</th>
+                <th style="padding: 20px;">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- TODO: Loop through the database entries to display them in this table -->
+            {% for stock in portfolio %}
+            <tr>
+                <td>{{ stock.comp_symbol }}</td>
+                {% if stock.action == 'sell' %}
+                    <td>-{{ stock.shares }}</td>
+                {% else %}
+                    <td>+{{ stock.shares }}</td>
+                {% endif %}
+                <td>{{ stock.price | usd }}</td>
+                <td>{{ stock.time }}</td>
+                <td>{{ stock.action }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    </div>
+{% endblock %}

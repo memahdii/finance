@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Portfolio
+{% endblock %}
+
+{% block main %}
+    <div class="container">
+    <table style="margin: 0 auto;">
+        <thead>
+            <tr>
+                <th style="padding: 20px;">Symbol</th>
+                <th style="padding: 20px;">Name</th>
+                <th style="padding: 20px;">Shares</th>
+                <th style="padding: 20px;">Price</th>
+                <th style="padding: 20px;">Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- TODO: Loop through the database entries to display them in this table -->
+            {% for stock in portfolio %}
+            <tr>
+                <td>{{ stock.comp_symbol }}</td>
+                <td>{{ stock.comp_name }}</td>
+                <td>{{ stock.shares }}</td>
+                <td>{{ stock.price | usd }}</td>
+                <td>{{ (stock.shares * stock.price) | usd }}</td>
+            </tr>
+            {% endfor %}
+            <tr>
+                <td>CASH</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>{{cash | usd }}</td>
+            </tr>
+            <tr>
+                <td>TOTAL</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td style="padding: 20px; border-top:1px solid black;">{{total_property | usd }}</td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+{% endblock %}
